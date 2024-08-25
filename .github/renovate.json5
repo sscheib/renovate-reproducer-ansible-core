@@ -1,0 +1,39 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "packageRules": [
+    {
+      "description": "Limit Ansible Core in pre-commit to patch updates",
+      "matchDepNames": [
+        "ansible-core"
+      ],
+      "matchFileNames": [
+        "^\\.pre-commit-config\\.yaml$"
+      ],
+      "matchDatasources": [
+        "pypi"
+      ],
+      "major": {
+        "enabled": false
+      },
+      "minor": {
+        "enabled": false
+      },
+      "patch": {
+        "enabled": true
+      }
+    }
+  ],
+  "customManagers": [
+    {
+      "description": "Extract in-line dependencies for Python",
+      "customType": "regex",
+      "fileMatch": [
+        "^\\.pre-commit-config\\.yaml$"
+      ],
+      "matchStrings": [
+        "# renovate: datasource=(?<datasource>.*?)(\\sversioning=(?<versioning>.*?))?\\s+-\\s+['\"]?(?<depName>[^=@]+)(?:==|@)\\s{0,}(?<currentValue>[^'\"\\s\\n]+)"
+      ],
+      "versioningTemplate": "{{#if versioning}}{{{versioning}}}{{else}}semver{{/if}}"
+    }
+  ]
+}
