@@ -1,5 +1,6 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "separateMinorPatch": true,
   "packageRules": [
     {
       "description": "Limit Ansible Core in pre-commit to patch updates",
@@ -8,9 +9,6 @@
       ],
       "matchFileNames": [
         "^\\.pre-commit-config\\.yaml$"
-      ],
-      "matchDatasources": [
-        "pypi"
       ],
       "major": {
         "enabled": false
